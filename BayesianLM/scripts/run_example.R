@@ -1,0 +1,22 @@
+file_arg <- grep("^--file=", commandArgs(FALSE), value = TRUE)
+if (length(file_arg) != 1L) stop("Run with Rscript scripts/run_example.R")
+repo_root <- dirname(dirname(normalizePath(sub("^--file=", "", file_arg))))
+source(file.path(repo_root, "scripts", "_common.R"))
+opt <- cli_options()
+check_options(opt, c("runs", "burn", "thin", "H", "seed", "n", "out"))
+runs <- number_option(opt, "runs", 500L)
+burn <- number_option(opt, "burn", floor(runs / 2))
+seed <- number_option(opt, "seed", 2026L)
+out <- text_option(opt, "out", file.path(repo_root, "results", "example"))
+dir.create(out, recursive = TRUE, showWarnings = FALSE)
+series <- simulate_arfima(number_option(opt, "n", 512L), d = .2, seed = seed)
+dat <- periodogram_data(series)
+fit <- longmemory_ksb_sampler(dat$Y, dat$omega, H = number_option(opt, "H", 5L),
+                             runs = runs, burn = burn, thin = number_option(opt, "thin", 1L),
+                             seed = seed + 1L, display = 0)
+saveRDS(list(fit = fit, periodogram = dat, series = series, options = opt,
+             session = sessionInfo()), file.path(out, "example.rds"))
+write.csv(fit_summary(fit, .2), file.path(out, "summary.csv"), row.names = FALSE)
+save_diagnostic_plot(series, dat, fit, file.path(out, "diagnostics.pdf"), "Simulated ARFIMA(0,0.2,0)")
+cat("Example saved to", normalizePath(out), "\n")
+cat("This short run is an execution demonstration, not a converged scientific analysis.\n")

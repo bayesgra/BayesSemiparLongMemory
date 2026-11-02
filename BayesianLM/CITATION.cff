@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying manuscript when using this research code."
+type: software
+title: "Code for Bayesian Semiparametric Regression for Dependent Data: An Application to Long Memory"
+authors:
+  - family-names: Grazian
+    given-names: Clara
+preferred-citation:
+  type: unpublished
+  title: "Bayesian Semiparametric Regression for Dependent Data: An Application to Long Memory"
+  authors:
+    - family-names: Grazian
+      given-names: Clara
+  notes: "Supplied manuscript; publication metadata should be updated by the author."
