@@ -1,7 +1,6 @@
 # Mean-zero kernel stick-breaking log-periodogram regression.
 # Normal priors below use VARIANCES 100 and 10.
 # Squared-exponential convention: K(t,g,lambda)=exp(-lambda*(t-g)^2).
-# The manuscript does not specify its bandwidth parameterization explicitly.
 
 ksb_logadd <- function(a, b) {
   m <- pmax(a, b)
