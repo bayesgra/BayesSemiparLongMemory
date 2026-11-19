@@ -1,7 +1,5 @@
 # Finite zero-start convolution approximation to stationary ARFIMA(1,d,1).
 # (1-phi*B)(1-B)^d X_t = (1+theta*B) epsilon_t.
-# A long warmup is discarded. This is NOT an exact stationary simulator;
-# assess burn sensitivity, especially d close to 1/2.
 simulate_arfima <- function(n, d, phi = 0, theta = 0,
                             innovations = c("gaussian", "student"), df = 5,
                             burn = max(5000L, 5L * n), seed = NULL) {
