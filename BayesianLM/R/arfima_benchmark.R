@@ -1,8 +1,6 @@
 # Optional conditional Gaussian ARFIMA benchmark, implemented using base R.
-# This is NOT an implementation of the exact filtered method of Gabor & Grazian.
 # Model: (1 - phi B)(1 - B)^d Y_t = (1 + theta B) epsilon_t.
-# All presample values are set to zero. This finite-past conditional likelihood
-# approximates the stationary likelihood and can be sensitive to initialization.
+# All presample values are set to zero. 
 
 arfima_fractional_difference <- function(y, d) {
   n <- length(y)
