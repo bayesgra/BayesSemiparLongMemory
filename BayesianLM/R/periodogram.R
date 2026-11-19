@@ -1,6 +1,5 @@
 # The order-one taper convention is h_s = 1 - exp(2*pi*i*s/n).
 # Use a positive-exponent Fourier sum, matching Faÿ (2010), Eq. (2.1).
-# The paper does not spell out the coefficient convention; see docs.
 periodogram_data <- function(series, cutoff = floor(length(series)^0.8),
                              taper = c("order1", "none"), stride = NULL,
                              first = NULL, demean = TRUE) {
